@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "author": "Emil Maliakal",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-st-nucleo-c031c6", "id": "nucleo", "top": 0.83, "left": -0.98, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": 8.3, "left": -163.4, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 150,
+      "left": 480,
+      "rotate": 90,
+      "attrs": { "value": "100" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 80,
+      "left": 476,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-ky-040",
+      "id": "encoder1",
+      "top": -333,
+      "left": -94.7,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servo1",
+      "top": -375.4,
+      "left": 251.4,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pushbutton-6mm",
+      "id": "btn1",
+      "top": 305,
+      "left": 307.2,
+      "attrs": { "color": "green", "xray": "1", "bounce": "0" }
+    }
+  ],
+  "connections": [
+    [ "$serialMonitor:TX", "nucleo:PA3", "", [] ],
+    [ "$serialMonitor:RX", "nucleo:PA2", "", [] ],
+
+    [ "nucleo:PB0", "r1:2", "gold", [] ],
+    [ "r1:1", "led1:A", "gold", [] ],
+    [ "led1:C", "nucleo:GND.9", "black", [] ],
+
+    [ "encoder1:CLK", "nucleo:PB10", "magenta", [ "h48", "v-124.8" ] ],
+    [ "encoder1:DT", "nucleo:PB4", "limegreen", [ "v9.6", "h86.4", "v480" ] ],
+    [ "encoder1:SW", "nucleo:PA15", "cyan", [ "v19.2", "h115.2", "v451.2" ] ],
+    [ "nucleo:5V.2", "encoder1:VCC", "red", [ "h19.65", "v-412.8", "h-95.6" ] ],
+    [ "encoder1:GND", "nucleo:GND.5", "black", [ "h-0.8", "v451.2" ] ],
+
+    [ "servo1:GND", "nucleo:GND.5", "black", [] ],
+    [ "servo1:V+", "nucleo:5V.2", "red", [] ],
+    [ "servo1:PWM", "nucleo:PA6", "#8f4814", [] ],
+
+    [ "pot1:GND", "nucleo:GND.5", "black", [] ],
+    [ "pot1:SIG", "nucleo:A0", "green", [] ],
+    [ "pot1:VCC", "nucleo:5V.2", "red", [] ],
+
+    [ "btn1:1.l", "nucleo:PA9", "blue", [] ],
+    [ "btn1:2.r", "nucleo:GND.9", "black", [] ]
+  ],
+  "dependencies": {}
+}
